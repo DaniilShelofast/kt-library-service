@@ -19,7 +19,7 @@ class LibraryService {
         val names = mutableListOf<Book>()
         for (n in books) {
             for (name in n.authors) {
-                if (name.name.contains(authorName,ignoreCase = true)) {
+                if (name.name.contains(authorName, ignoreCase = true)) {
                     names.add(n)
                 }
             }
@@ -28,6 +28,9 @@ class LibraryService {
     }
 
     fun searchByGenre(genre: String): List<Book> {
+        if (genre.isBlank()) {
+            return emptyList()
+        }
         val genres = mutableListOf<Book>()
         for (g in books) {
             if (g.genre.contains(genre, ignoreCase = true)) {
